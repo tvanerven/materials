@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Relation
 {
     /**
-     * @var \RelationType
+     * @var RelationType
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -22,10 +22,10 @@ class Relation
      *   @ORM\JoinColumn(name="relation_type_fk", referencedColumnName="id")
      * })
      */
-    private $relationType;
+    private RelationType $relationType;
 
     /**
-     * @var \Concept
+     * @var Concept
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -34,10 +34,10 @@ class Relation
      *   @ORM\JoinColumn(name="source_fk", referencedColumnName="id")
      * })
      */
-    private $source;
+    private Concept $source;
 
     /**
-     * @var \Concept
+     * @var Concept
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -46,7 +46,7 @@ class Relation
      *   @ORM\JoinColumn(name="target_fk", referencedColumnName="id")
      * })
      */
-    private $target;
+    private Concept $target;
 
 
 }

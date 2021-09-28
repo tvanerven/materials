@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Material
@@ -19,24 +21,24 @@ class Material
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="text", length=65535, nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="link", type="text", length=65535, nullable=false)
      */
-    private $link;
+    private string $link;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Concept", inversedBy="material")
      * @ORM\JoinTable(name="annotation",
@@ -48,14 +50,14 @@ class Material
      *   }
      * )
      */
-    private $concept;
+    private Collection $concept;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->concept = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->concept = new ArrayCollection();
     }
 
 }

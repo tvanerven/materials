@@ -19,14 +19,14 @@ class RelationType
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="text", length=65535, nullable=false)
      */
-    private $name;
+    private string $name;
 
 
 }
