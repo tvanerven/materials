@@ -41,7 +41,8 @@ DROP TABLE IF EXISTS `concept`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `concept` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `label` text COLLATE utf8_unicode_ci NOT NULL,
+  `rdf_about` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,7 +57,8 @@ DROP TABLE IF EXISTS `material`;
 CREATE TABLE `material` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `link` text COLLATE utf8_unicode_ci NOT NULL,
+  `doi` text COLLATE utf8_unicode_ci NOT NULL,
+  `author` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -90,7 +92,8 @@ DROP TABLE IF EXISTS `relation_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `relation_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `label` text COLLATE utf8_unicode_ci NOT NULL,
+  `rdf_about` text COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -104,4 +107,4 @@ CREATE TABLE `relation_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-27 16:02:52
+-- Dump completed on 2021-09-29 14:52:07

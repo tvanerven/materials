@@ -26,9 +26,16 @@ class Concept
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="label", type="text", length=65535, nullable=false)
      */
-    private string $name;
+    private string $label;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rdf_about", type="text", length=65535, nullable=false)
+     */
+    private string $rdfAbout;
 
     /**
      * @var Collection
@@ -40,9 +47,15 @@ class Concept
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(string $label, string $rdfAbout)
     {
+        $this->label = $label;
+        $this->rdfAbout = $rdfAbout;
         $this->material = new ArrayCollection();
     }
 
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
 }

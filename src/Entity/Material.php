@@ -33,9 +33,16 @@ class Material
     /**
      * @var string
      *
-     * @ORM\Column(name="link", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="author", type="text", length=65535, nullable=false)
      */
-    private string $link;
+    private string $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="doi", type="text", length=65535, nullable=false)
+     */
+    private string $doi;
 
     /**
      * @var Collection
@@ -55,9 +62,25 @@ class Material
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(string $name, string $author, string $doi)
     {
+        $this->name = $name;
+        $this->author = $author;
+        $this->doi = $doi;
         $this->concept = new ArrayCollection();
     }
 
+    /**
+     * @param Concept[] concepts
+     */
+    public function addConcepts(array $concepts)
+    {
+        foreach ($concepts as $concept) {
+            if ($this->concept->indexOf($concept) > -1) {
+                continue;
+            }
+
+            $this->concept->add($concept);
+        }
+    }
 }
