@@ -70,6 +70,7 @@ class OntologyImport extends Command
             $material = new Material($fileMaterial->name, $fileMaterial->author, $fileMaterial->doi);
             $material->addConcepts($concepts);
             $this->em->persist($material);
+            print("Insert material \"$fileMaterial->name\" into database\n");
         }
         $this->em->flush();
     }
