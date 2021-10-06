@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Concept
@@ -38,20 +36,12 @@ class Concept
     private string $rdfAbout;
 
     /**
-     * @var Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Material", mappedBy="concept")
-     */
-    private Collection $material;
-
-    /**
      * Constructor
      */
     public function __construct(string $label, string $rdfAbout)
     {
         $this->label = $label;
         $this->rdfAbout = $rdfAbout;
-        $this->material = new ArrayCollection();
     }
 
     public function getLabel(): string

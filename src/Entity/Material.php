@@ -3,14 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Material
  *
  * @ORM\Table(name="material")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MaterialRepository")
  */
 class Material
 {
@@ -45,19 +43,9 @@ class Material
     private string $doi;
 
     /**
-     * @var Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Concept", inversedBy="material")
-     * @ORM\JoinTable(name="annotation",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="material_fk", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="concept_fk", referencedColumnName="id")
-     *   }
-     * )
+     * @var Concept[]
      */
-    private Collection $concept;
+    private array $concept = [];
 
     /**
      * Constructor
@@ -67,20 +55,30 @@ class Material
         $this->name = $name;
         $this->author = $author;
         $this->doi = $doi;
-        $this->concept = new ArrayCollection();
     }
 
-    /**
-     * @param Concept[] concepts
-     */
-    public function addConcepts(array $concepts)
+    public function getName(): string
     {
-        foreach ($concepts as $concept) {
-            if ($this->concept->indexOf($concept) > -1) {
-                continue;
-            }
+        return $this->name;
+    }
 
-            $this->concept->add($concept);
-        }
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function getDoi(): string
+    {
+        return $this->doi;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function addConcept(Concept $concept)
+    {
+        array_push($this->concept, $concept);
     }
 }

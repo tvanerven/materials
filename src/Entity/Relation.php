@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Relation
  *
- * @ORM\Table(name="relation", indexes={@ORM\Index(name="relation_target_fk", columns={"target_fk"}), @ORM\Index(name="relation_relation_type_fk", columns={"relation_type_fk"}), @ORM\Index(name="IDX_62894749821B1D3F", columns={"source_fk"})})
+ * @ORM\Table(name="relation", 
+ * indexes={
+ *  @ORM\Index(name="relation_target_fk", columns={"target_fk"}),
+ *  @ORM\Index(name="relation_relation_type_fk", columns={"relation_type_fk"}),
+ *  @ORM\Index(name="relation_source_fk", columns={"source_fk"})})
  * @ORM\Entity
  */
 class Relation
@@ -49,13 +53,15 @@ class Relation
      */
     private RelationType $relationType;
 
-    public function __construct(Concept $source, Concept $target, RelationType $relationType) {
+    public function __construct(Concept $source, Concept $target, RelationType $relationType)
+    {
         $this->source = $source;
         $this->target = $target;
         $this->relationType = $relationType;
     }
 
-    public function getSource(): Concept {
+    public function getSource(): Concept
+    {
         return $this->source;
     }
 

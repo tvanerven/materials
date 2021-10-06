@@ -2,6 +2,7 @@
 
 namespace App\Script;
 
+use App\Entity\Annotation;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use SimpleXMLElement;
@@ -65,14 +66,26 @@ class OntologyImport extends Command
         $fileMaterials = json_decode($fileMaterials);
 
         foreach ($fileMaterials as $fileMaterial) {
-            $concepts = $this->em->getRepository(Concept::class)->findBy(['rdfAbout' => $fileMaterial->concept]);
-
             $material = new Material($fileMaterial->name, $fileMaterial->author, $fileMaterial->doi);
-            $material->addConcepts($concepts);
             $this->em->persist($material);
+
+            $concepts = $this->em->getRepository(Concept::class)->findBy(['rdfAbout' => $fileMaterial->concept]);
+            $this->addAnnotation($material, $concepts);
             print("Insert material \"$fileMaterial->name\" into database\n");
         }
         $this->em->flush();
+    }
+
+    /**
+     * @param Material $material
+     * @param Concept[] $concepts
+     */
+    private function addAnnotation(Material $material, array $concepts)
+    {
+        foreach ($concepts as $concept) {
+            $annotation = new Annotation($material, $concept);
+            $this->em->persist($annotation);
+        }
     }
 
     private function addConcepts(SimpleXMLElement $xmlOntology)
