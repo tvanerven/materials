@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Annotation;
+use App\Entity\Concept;
 use App\Entity\Material;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,12 +21,15 @@ class MaterialRepository extends ServiceEntityRepository
         parent::__construct($registry, Material::class);
     }
 
-    public function findAllMaterial()
+    /**
+     * @param string[] $rdfAboutConceptFilter
+     * @return Material[]
+     */
+    public function findAllMaterial(array $rdfAboutConceptFilter): array
     {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT a FROM App\Entity\Annotation a');
 
-        $annotations =  $query->getResult();
+
+        $annotations = $this->getAnnotations($rdfAboutConceptFilter);
         $materials = [];
 
         foreach ($annotations as $annotation) {
@@ -42,6 +47,43 @@ class MaterialRepository extends ServiceEntityRepository
         }
 
         return $materials;
+    }
+
+    /**
+     * @param string[] $rdfAboutConceptFilter
+     * @return Annotation[]
+     */
+    private function getAnnotations(array $rdfAboutConceptFilter): array
+    {
+        $em = $this->getEntityManager();
+        $query = 'SELECT a FROM App\Entity\Annotation a';
+
+        if (count($rdfAboutConceptFilter) === 0) {
+            return $em->createQuery($query)->getResult();
+        }
+
+        $concepts = $em->getRepository(Concept::class)->getConceptsByLabel($rdfAboutConceptFilter);
+        if (count($concepts) === 0) {
+            return [];
+        }
+        
+        $query .= ' WHERE';
+
+        for ($i = 0; $i < count($concepts); $i++) {
+            if ($i !== 0) {
+                $query .= ' AND';
+            }
+
+            $query .= " IDENTITY(a.material) IN (SELECT IDENTITY(a$i.material) FROM App\Entity\Annotation a$i WHERE a$i.concept = :concept$i)";
+        }
+
+        $qb = $em->createQuery($query);
+
+        for ($i = 0; $i < count($concepts); $i++) {
+            $qb->setParameter("concept$i", $concepts[$i]);
+        }
+
+        return $qb->getResult();
     }
 
     /**

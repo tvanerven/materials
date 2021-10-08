@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Concept
  *
  * @ORM\Table(name="concept")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ConceptRepository")
  */
 class Concept
 {
@@ -47,5 +47,10 @@ class Concept
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

@@ -23,7 +23,7 @@ class MaterialController extends AbstractFOSRestController
      * Search materials.
      * @OA\Response(
      *  response=200,
-     *  description="Search materials.",
+     *  description="Material list.",
      *  @OA\JsonContent(type="array",
      *      @OA\Items(allOf={@OA\Schema(ref=@Model(type=Material::class))},
      *      @OA\Property(property="concept", type="array", @OA\Items(ref=@Model(type=Concept::class)))))
@@ -32,24 +32,27 @@ class MaterialController extends AbstractFOSRestController
      * 
      * @OA\RequestBody(description="Search parameters",
      *     @OA\Schema(type="object",
-     *         @OA\Property(property="conceptFilter", type="array")))
+     *         @OA\Property(property="rdfAboutConceptFilter")))
      * 
-     * @Rest\Get(path="/material", name="app_material_list")
-     * @Rest\RequestParam(name="concept", nullable=true)
+     * @Rest\Post(path="/material", name="app_material_list")
+     * @Rest\RequestParam(name="rdfAboutConceptFilter", default={}, description="rdfAbout list of concept used to filter material list.")
      * @Rest\View
      * 
+     * @param string[] $rdfAboutConceptFilter
      * @return View
      */
-    public function listAction(?array $concept): View
+    public function listAction(array $rdfAboutConceptFilter): View
     {
         $repo = $this->getDoctrine()->getRepository(Material::class);
-        $materials = $repo->findAllMaterial();
+        $materials = $repo->findAllMaterial($rdfAboutConceptFilter);
 
         if (count($materials) === 0) {
-            return View::create([], Response::HTTP_NOT_FOUND);
+            return View::create('No material found.', Response::HTTP_NOT_FOUND);
         }
 
         //$materials = $this->formatMaterial($materials);
         return View::create($materials, Response::HTTP_OK);
     }
+
+    
 }

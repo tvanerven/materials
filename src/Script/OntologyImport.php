@@ -14,15 +14,16 @@ use App\Entity\Relation;
 use App\Entity\RelationType;
 
 /*
-* @package App
-*/
+ * @package App
+ */
 
 class OntologyImport extends Command
 {
 
-    const DATABASE_SCHEMA = 'sql/materials-browser.sql';
+    const DATABASE_SCHEMA_PATH = 'sql/materials-browser.sql';
     const ONTOLOGY_FILE_PATH = 'asset/t4fs.owl';
     const MATERIALS_FILE_PATH = 'asset/materials.json';
+    
     const SUB_CLASS_OF = 'subClassOf';
 
     /**
@@ -222,7 +223,7 @@ class OntologyImport extends Command
 
     private function cleanDatabase()
     {
-        $databaseSchema = file_get_contents(self::DATABASE_SCHEMA);
+        $databaseSchema = file_get_contents(self::DATABASE_SCHEMA_PATH);
         $this->em->getConnection()->executeQuery($databaseSchema);
         $this->em->flush();
     }
