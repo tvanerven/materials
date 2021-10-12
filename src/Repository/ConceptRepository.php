@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Concept;
+use App\Entity\Relation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -34,5 +35,34 @@ class ConceptRepository extends ServiceEntityRepository
             ->setParameter('rdfAboutList', $rdfAboutList);
 
         return $qb->getResult();
+    }
+
+    /**
+     * @return Concept[]
+     */
+    public function getConceptWithSubConcepts(Concept $concept): array
+    {
+        $subConcept = [$concept];
+        $this->getSubConcepts($concept, $subConcept);
+        return $subConcept;
+    }
+
+    /**
+     * @param Concept[] $subConcepts
+     */
+    private function getSubConcepts(Concept $concept, array &$subConcepts): void
+    {
+        $relations = $this->getEntityManager()->getRepository(Relation::class)->findBy(['target' => $concept]);
+
+        foreach ($relations as $relation) {
+            $subConcept = $relation->getSource();
+
+            if (in_array($subConcept, $subConcepts)) {
+                continue;
+            }
+
+            array_push($subConcepts, $subConcept);
+            $this->getSubConcepts($subConcept, $subConcepts);
+        }
     }
 }

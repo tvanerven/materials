@@ -77,7 +77,7 @@ class Material
         return $this->id;
     }
 
-    public function addConcept(Concept $concept)
+    public function addConcept(Concept $concept): void
     {
         array_push($this->concept, $concept);
     }

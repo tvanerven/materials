@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * indexes={
  *  @ORM\Index(name="annotation_concept_fk", columns={"concept_fk"}),
  *  @ORM\Index(name="annotation_material_fk", columns={"material_fk"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AnnotationRepository")
  */
 class Annotation
 {
