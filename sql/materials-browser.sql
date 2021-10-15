@@ -23,9 +23,10 @@ DROP TABLE IF EXISTS `annotation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `annotation` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `material_fk` int(10) unsigned NOT NULL,
   `concept_fk` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`material_fk`,`concept_fk`),
+  PRIMARY KEY (`id`),
   KEY `annotation_concept_fk` (`concept_fk`),
   CONSTRAINT `annotation_concept_fk` FOREIGN KEY (`concept_fk`) REFERENCES `concept` (`id`),
   CONSTRAINT `annotation_material_fk` FOREIGN KEY (`material_fk`) REFERENCES `material` (`id`)
@@ -71,10 +72,11 @@ DROP TABLE IF EXISTS `relation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `relation` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source_fk` int(10) unsigned NOT NULL,
   `target_fk` int(10) unsigned NOT NULL,
   `relation_type_fk` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`source_fk`,`target_fk`,`relation_type_fk`),
+  PRIMARY KEY (`id`),
   KEY `relation_target_fk` (`target_fk`),
   KEY `relation_relation_type_fk` (`relation_type_fk`),
   CONSTRAINT `relation_relation_type_fk` FOREIGN KEY (`relation_type_fk`) REFERENCES `relation_type` (`id`),

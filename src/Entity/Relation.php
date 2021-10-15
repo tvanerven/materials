@@ -18,9 +18,17 @@ class Relation
 {
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private int $id;
+
+    /**
      * @var Concept
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Concept")
      * @ORM\JoinColumns({
@@ -32,7 +40,6 @@ class Relation
     /**
      * @var Concept
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Concept")
      * @ORM\JoinColumns({
@@ -44,7 +51,6 @@ class Relation
     /**
      * @var RelationType
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="RelationType")
      * @ORM\JoinColumns({

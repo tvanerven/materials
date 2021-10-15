@@ -16,9 +16,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Annotation
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private int $id;
+
+    /**
      * @var Material
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Material")
      * @ORM\JoinColumns({
@@ -30,7 +38,6 @@ class Annotation
     /**
      * @var Concept
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Concept")
      * @ORM\JoinColumns({
