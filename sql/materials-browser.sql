@@ -28,6 +28,7 @@ CREATE TABLE `annotation` (
   `concept_fk` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `annotation_concept_fk` (`concept_fk`),
+  KEY `annotation_material_fk` (`material_fk`),
   CONSTRAINT `annotation_concept_fk` FOREIGN KEY (`concept_fk`) REFERENCES `concept` (`id`),
   CONSTRAINT `annotation_material_fk` FOREIGN KEY (`material_fk`) REFERENCES `material` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -79,6 +80,7 @@ CREATE TABLE `relation` (
   PRIMARY KEY (`id`),
   KEY `relation_target_fk` (`target_fk`),
   KEY `relation_relation_type_fk` (`relation_type_fk`),
+  KEY `relation_source_fk` (`source_fk`),
   CONSTRAINT `relation_relation_type_fk` FOREIGN KEY (`relation_type_fk`) REFERENCES `relation_type` (`id`),
   CONSTRAINT `relation_source_fk` FOREIGN KEY (`source_fk`) REFERENCES `concept` (`id`),
   CONSTRAINT `relation_target_fk` FOREIGN KEY (`target_fk`) REFERENCES `concept` (`id`)
@@ -109,4 +111,4 @@ CREATE TABLE `relation_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-29 14:52:07
+-- Dump completed on 2021-10-15 16:10:28
