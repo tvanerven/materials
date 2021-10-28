@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
 class MaterialController extends AbstractFOSRestController
 {
 
+    const RDF_ABOUT_LIMIT = 10;
+
     /**
      * Search materials.
      * @OA\Response(
@@ -29,6 +31,7 @@ class MaterialController extends AbstractFOSRestController
      *      @OA\Property(property="concept", type="array", @OA\Items(ref=@Model(type=Concept::class)))))
      * )
      * @OA\Response(response="404", description="No material found.")
+     * @OA\Response(response="400", description="Too much rdfAbout in parameter.")
      * 
      * @OA\RequestBody(description="Search parameters",
      *     @OA\Schema(type="object",
@@ -43,6 +46,10 @@ class MaterialController extends AbstractFOSRestController
      */
     public function listAction(array $rdfAboutConceptFilter): View
     {
+        if (count($rdfAboutConceptFilter) > self::RDF_ABOUT_LIMIT) {
+            return View::create('Too much rdfAbout in parameter. Max ' . self::RDF_ABOUT_LIMIT, Response::HTTP_BAD_REQUEST);
+        }
+
         $repo = $this->getDoctrine()->getRepository(Material::class);
         $materials = $repo->findAllMaterial($rdfAboutConceptFilter);
 
@@ -53,6 +60,4 @@ class MaterialController extends AbstractFOSRestController
         //$materials = $this->formatMaterial($materials);
         return View::create($materials, Response::HTTP_OK);
     }
-
-    
 }
