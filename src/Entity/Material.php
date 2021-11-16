@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use OpenApi\Annotations as OA;
 
 /**
  * Material
@@ -43,6 +46,13 @@ class Material
     private string $doi;
 
     /**
+     * @ORM\Column(name="date", type="date", nullable=false)
+     * @JMS\Type("DateTime<'Y-m-d'>")
+     * @OA\Property(example="2021-12-25")
+     */
+    private DateTime $date;
+
+    /**
      * @var Concept[]
      */
     private array $concept = [];
@@ -50,11 +60,12 @@ class Material
     /**
      * Constructor
      */
-    public function __construct(string $name, string $author, string $doi)
+    public function __construct(string $name, string $author, string $doi, DateTime $date)
     {
         $this->name = $name;
         $this->author = $author;
         $this->doi = $doi;
+        $this->date = $date;
     }
 
     public function getName(): string
@@ -75,6 +86,11 @@ class Material
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getDate(): DateTime
+    {
+        return $this->date;
     }
 
     public function addConcept(Concept $concept): void

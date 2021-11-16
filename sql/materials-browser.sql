@@ -61,6 +61,7 @@ CREATE TABLE `material` (
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `doi` text COLLATE utf8_unicode_ci NOT NULL,
   `author` text COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -111,4 +112,4 @@ CREATE TABLE `relation_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-15 16:10:28
+-- Dump completed on 2021-11-16 12:15:53

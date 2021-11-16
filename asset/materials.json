@@ -3,6 +3,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4711930",
       "name": "Introduction to Linked Data",
       "author": "Bangert, Daniel",
+      "date": "2019-08-16",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000423",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000247",
@@ -22,6 +23,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4665390",
       "name": "Open and Responsible Research:Roles and Responsibilities for Data Stewards",
       "author": "Bezuidenhout, Louise",
+      "date": "2021-04-06",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000478",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000141",
@@ -41,6 +43,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572719",
       "name": "What does a data steward do?",
       "author": "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000141",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000009",
@@ -62,6 +65,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572677",
       "name": "What does a data archivist do?",
       "author": "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000149",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000156",
@@ -94,6 +98,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572653",
       "name": "FAIR data",
       "author": "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000478",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000421",
@@ -121,6 +126,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572597",
       "name": "Repository certification",
       "author" : "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000178",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000005",
@@ -149,6 +155,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572632",
       "name": "Data journals - publish and promote your data",
       "author": "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000178",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000489",
@@ -166,6 +173,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4572614",
       "name": "Data access exercise",
       "author": "Grootveld, Marjan",
+      "date": "2019-08-12",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000178",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000489",
@@ -193,6 +201,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4561728",
       "name": "Developing and Implementing a Research Data Policy",
       "author": "Davidson, Joy",
+      "date": "2021-02-25",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000196",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000009",
@@ -212,6 +221,7 @@
       "doi": "https://doi.org/10.5281/zenodo.4778352",
       "name": "Introduction to Research Data Management and Open Research",
       "author": "Shanmugasundaram Venkataraman",
+      "date": "2020-12-07",
       "concept": [
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000335",
           "https://github.com/terms4fairskills/FAIRterminology/T4FS_0000036",

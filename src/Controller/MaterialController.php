@@ -57,7 +57,6 @@ class MaterialController extends AbstractFOSRestController
             return View::create('No material found.', Response::HTTP_NOT_FOUND);
         }
 
-        //$materials = $this->formatMaterial($materials);
         return View::create($materials, Response::HTTP_OK);
     }
 }

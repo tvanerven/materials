@@ -2,6 +2,7 @@
 
 namespace App\Script;
 
+use DateTime;
 use App\Entity\Annotation;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +24,7 @@ class OntologyImport extends Command
     const DATABASE_SCHEMA_PATH = 'sql/materials-browser.sql';
     const ONTOLOGY_FILE_PATH = 'asset/t4fs.owl';
     const MATERIALS_FILE_PATH = 'asset/materials.json';
-    
+
     const SUB_CLASS_OF = 'subClassOf';
 
     /**
@@ -67,7 +68,7 @@ class OntologyImport extends Command
         $fileMaterials = json_decode($fileMaterials);
 
         foreach ($fileMaterials as $fileMaterial) {
-            $material = new Material($fileMaterial->name, $fileMaterial->author, $fileMaterial->doi);
+            $material = new Material($fileMaterial->name, $fileMaterial->author, $fileMaterial->doi, DateTime::createFromFormat('Y-m-d', $fileMaterial->date));
             $this->em->persist($material);
 
             $concepts = $this->em->getRepository(Concept::class)->findBy(['rdfAbout' => $fileMaterial->concept]);
