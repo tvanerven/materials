@@ -1,6 +1,6 @@
 -- MySQL dump 10.19  Distrib 10.3.28-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: materials_browser
+-- Host: mysql    Database: materials_browser
 -- ------------------------------------------------------
 -- Server version	10.3.28-MariaDB
 

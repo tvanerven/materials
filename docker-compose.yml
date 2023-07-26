@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  materials-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: symfony server:start
+    container_name: materials
+    ports:
+      - "8000:8000"
+    networks:
+      - traefik
+      - database
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.5
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'materials_browser'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    networks:
+      - database
+    volumes:
+      - ./db:/var/lib/mysql
+
+volumes:
+  db:
+
+networks:
+  database:
+    external: true
+  traefik:
+    external: true
